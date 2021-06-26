@@ -1,0 +1,19 @@
+{
+  "name": "sunxiaoju.github.io",
+  "version": "1.0.0",
+  "description": "good good stary, day day up",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sunxiaoju/sunxiaoju.github.io.git"
+  },
+  "author": "sunxiaoju",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sunxiaoju/sunxiaoju.github.io/issues"
+  },
+  "homepage": "https://github.com/sunxiaoju/sunxiaoju.github.io#readme"
+}
