@@ -17,7 +17,7 @@ url: https://github.com/sunxiaoju/sunxiaoju.github.io
 #网站根据目录
 # root: ''
 # 文章的 永久链接 格式 
-permalink: :title
+permalink: :title/
 # 永久链接各部分的默认值
 # permalink_defaults:
 pretty_urls:

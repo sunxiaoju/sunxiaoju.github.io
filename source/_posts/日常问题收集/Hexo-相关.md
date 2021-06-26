@@ -1,0 +1,30 @@
+---
+layout: post draft
+title: Hexo 相关
+date: 2021-06-26 21:39:40
+tags: Hexo 
+---
+
+
+##  Hexo 生成的博客点击文章不会跳转界面，变成了直接下载
+调查发现是因为修改了_config.xml（主文件夹下的设置文件，不是theme里面的）中的permalink参数，在修改中把最后一个斜杠给去掉了，重新加上之后可以点击下载了
+
+```js
+// 文章的 永久链接 格式 
+permalink: :title/
+```
+
+<br/>
+
+---
+
+## Hexo的文档中添加图片
+
+hexo 文档中添加图片的话，需要安装一下 hexo-asset-image 插件
+```js
+npm install https://github.com/CodeFalling/hexo-asset-image --save
+```
+使用下边这种方式即可引入，加载图片是以source为根路径的，如果图片放的位置是这样的：/source/image/a.png, 使用时引入方法：image/a.png 即可！
+```js
+![图片默认文字](路径)
+```
