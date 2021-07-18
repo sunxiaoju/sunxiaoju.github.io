@@ -13,7 +13,7 @@ timezone: 'Asia/Shanghai'
 
 # URL
 # 项目地址
-url: https://github.com/sunxiaoju/sunxiaoju.github.io/
+url: https://sunxiaoju.github.io/
 #网站根据目录
 root: '/sunxiaoju.github.io/'
 # 文章的 永久链接 格式 
@@ -49,8 +49,8 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
-  line_number: true
+  enable: true # 配置代码块高亮
+  line_number: true # 展示行数
   auto_detect: false
   tab_replace: ''
   wrap: true
