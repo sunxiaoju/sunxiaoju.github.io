@@ -16,7 +16,7 @@
 <meta property="og:description" content="复制链接在url中查看会多一个 – %E2%80%8B问题：  测试的时候发现，测试那边发现界面访问界面的去，界面展示不出来接口数据信息，调查日志发现有一个日志报错，认真看这个字符串后边多了一串编码字符 调查原因：  对“1516004%E2%80%8B”字符串进行范编码格式之后，得到的字符串是“1526004​”，并没有多余的空格和字符存在，是不是很神奇？   再继续调查发现 %E2%80%8E">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-06-26T11:59:47.000Z">
-<meta property="article:modified_time" content="2021-07-18T12:38:07.632Z">
+<meta property="article:modified_time" content="2021-07-18T12:52:09.988Z">
 <meta property="article:author" content="sunxiaoju">
 <meta property="article:tag" content="日常问题">
 <meta name="twitter:card" content="summary">
@@ -92,11 +92,11 @@
 <p>  这个字符串一般我们打印是打不出来的，但是通过word等其他文本编辑器拷贝的时候，可能会带有这个字符串，一般是存在url的最后边，怎么验证它是否存在呢？可以将其拷贝到url总就会在自动转化为 %E2%80%8E 这个编码字符，并且可以将鼠标光标放在“1526004​”字符串“前边，然后按删除需要删除两次才能删除到‘4’。</p>
 <h3 id="解决方法：-将url中包含通过替换方式，将这个字符串替换掉即可解决此问题："><a href="#解决方法：-将url中包含通过替换方式，将这个字符串替换掉即可解决此问题：" class="headerlink" title="解决方法： 将url中包含通过替换方式，将这个字符串替换掉即可解决此问题："></a>解决方法： 将url中包含通过替换方式，将这个字符串替换掉即可解决此问题：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = windows.location.href.replace(<span class="regexp">/%E2%80%8B/g</span>, <span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
 
-
+<span id="more"></span>
       
     </div>
     <footer class="article-footer">
-      <a data-url="https://sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/%E9%9A%8F%E7%AC%94%E8%AE%B0/" data-id="ckr96q5sq00060jyrdotm9rif" class="article-share-link">Share</a>
+      <a data-url="https://sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/%E9%9A%8F%E7%AC%94%E8%AE%B0/" data-id="ckr9788p100061er8f1nxcsmu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" rel="tag">日常问题</a></li></ul>
