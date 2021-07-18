@@ -18,6 +18,8 @@ permalink: :title/
 
 ---
 
+<!-- more -->
+
 ## Hexo的文档中添加图片
 
 hexo 文档中添加图片的话，需要安装一下 hexo-asset-image 插件

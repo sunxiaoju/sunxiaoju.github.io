@@ -14,6 +14,8 @@ tags: 工具库
 ### 思路
 可将json文件改为yml文件，node数据直接解析将yml文件服务为json对象即可实现
 
+<!-- more -->
+
 ###  实现 
 
 这里采用js-ymal插件读取yml文件转为json对应
