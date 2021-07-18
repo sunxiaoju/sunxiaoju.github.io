@@ -12,10 +12,11 @@ language: en
 timezone: 'Asia/Shanghai'
 
 # URL
+# 网站中css资源和其他静态资源文件的地址会根据url + root作为根目录去找文件
 # 项目地址
 url: https://sunxiaoju.github.io/
-#网站根据目录
-root: '/sunxiaoju.github.io/'
+#网站根据目录 
+# root: '/'
 # 文章的 永久链接 格式 
 permalink: :title/
 # 永久链接各部分的默认值
