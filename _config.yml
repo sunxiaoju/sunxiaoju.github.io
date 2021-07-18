@@ -13,9 +13,9 @@ timezone: 'Asia/Shanghai'
 
 # URL
 # 项目地址
-url: https://github.com/sunxiaoju/sunxiaoju.github.io
+url: https://github.com/sunxiaoju/sunxiaoju.github.io/
 #网站根据目录
-# root: ''
+root: '/sunxiaoju.github.io/'
 # 文章的 永久链接 格式 
 permalink: :title/
 # 永久链接各部分的默认值
