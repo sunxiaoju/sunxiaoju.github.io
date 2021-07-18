@@ -31,6 +31,10 @@ npm install https://github.com/CodeFalling/hexo-asset-image --save
 ![图片默认文字](路径)
 ```
 
+## Hexo使用小技巧
+
+- `<!-- more -->`： 在首页列表界面，为了能让多个文档信息展示看起来没那么乱，可以使用此标签使文档阶段，展示read more按钮
+
 ## 创建新的md文件
 ```js
   // 在__posts下创建一个 'test1.md'
