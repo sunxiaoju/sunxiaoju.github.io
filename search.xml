@@ -4,11 +4,87 @@
   
     
     <entry>
-      <title>Hello World</title>
-      <link href="/sunxiaoju/sunxiaoju.github.io/hello-world"/>
-      <url>/sunxiaoju/sunxiaoju.github.io/hello-world</url>
+      <title>react问题集</title>
+      <link href="/sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/react%E9%97%AE%E9%A2%98%E9%9B%86/"/>
+      <url>/sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/react%E9%97%AE%E9%A2%98%E9%9B%86/</url>
       
-        <content type="html"><![CDATA[<h3 id="Yes-is-ME"><a href="#Yes-is-ME" class="headerlink" title="Yes, is ME!"></a>Yes, is ME!</h3>]]></content>
+        <content type="html"><![CDATA[<h2 id="react中路由跳转后页面不置顶问题"><a href="#react中路由跳转后页面不置顶问题" class="headerlink" title="react中路由跳转后页面不置顶问题"></a>react中路由跳转后页面不置顶问题</h2><h3 id="问题-从页面A跳转到页面B，页面A滚动到中间位置，跳转后页面B也会在中间位置"><a href="#问题-从页面A跳转到页面B，页面A滚动到中间位置，跳转后页面B也会在中间位置" class="headerlink" title="问题: 从页面A跳转到页面B，页面A滚动到中间位置，跳转后页面B也会在中间位置"></a>问题: 从页面A跳转到页面B，页面A滚动到中间位置，跳转后页面B也会在中间位置</h3><h3 id="解决方法：在顶部组件的生命周期中进行判断，例如："><a href="#解决方法：在顶部组件的生命周期中进行判断，例如：" class="headerlink" title="解决方法：在顶部组件的生命周期中进行判断，例如："></a>解决方法：在顶部组件的生命周期中进行判断，例如：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentWillReceiveProps</span>(<span class="params">nextProps</span>)</span>&#123;​​​​​​</span><br><span class="line">　　<span class="comment">//当路由切换到新页面时置顶</span></span><br><span class="line">　　<span class="keyword">if</span>(<span class="built_in">this</span>.props.location !== nextProps.location)&#123;​​​​​​</span><br><span class="line">　　　　<span class="built_in">window</span>.scrollTo(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">　　&#125;​​​​​​</span><br><span class="line">&#125;​​​​​</span><br></pre></td></tr></table></figure><br/><hr><h2 id="在async-await的方法函数中使用setState的问题"><a href="#在async-await的方法函数中使用setState的问题" class="headerlink" title="在async/await的方法函数中使用setState的问题"></a>在async/await的方法函数中使用setState的问题</h2><p>在正常的函数方法中调用时，使用的setState()是一个异步处理的过程，但是如果在async 的方法中使用setState()时，执行顺序是有变化的，稍不注意就会被带入坑中,</p><p>在使用async的方法中，在await之前的setState方法调用都是异步来执行的，但是在await之后，使用的setState方法就变成了同步执行的了，一张图很容易说明问题：</p><p><img src="image/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD.png" alt="异步加载"></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 日常问题 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>node接入nacos</title>
+      <link href="/sunxiaoju.github.io/%E5%B7%A5%E5%85%B7%E5%BA%93/node%E6%8E%A5%E5%85%A5nacos/"/>
+      <url>/sunxiaoju.github.io/%E5%B7%A5%E5%85%B7%E5%BA%93/node%E6%8E%A5%E5%85%A5nacos/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 工具库 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ymal文件读取</title>
+      <link href="/sunxiaoju.github.io/%E5%B7%A5%E5%85%B7%E5%BA%93/yaml%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/"/>
+      <url>/sunxiaoju.github.io/%E5%B7%A5%E5%85%B7%E5%BA%93/yaml%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/</url>
+      
+        <content type="html"><![CDATA[<h2 id="ymal文件读取"><a href="#ymal文件读取" class="headerlink" title="ymal文件读取"></a>ymal文件读取</h2><h3 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h3><p>因为项目中配置文件放在nacos的配置文件中，从nacos配置中获取，后端使用的事yml文件，而前端用的是json文件的，并且每次修改nacos的话，都需要通过手动的修改方式去调整，而且到生产环境和测试环境的话，我们又没有权限修改，都维护到一个excel中统一由配管人员来统一修改，但是excel中的配置文件复制展示操作起来极不方便，并且还容易出问题。<br>所以现在改为通过脚本自动化修改配置，开发人员写好自动化的配置脚本之后，配管会员直接运行脚本就好了，这里就引起了一个问题，就是前端的配置文件使用的是json格式，而json格式又不支持自动化脚本修改</p><h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>可将json文件改为yml文件，node数据直接解析将yml文件服务为json对象即可实现</p><h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><p>这里采用js-ymal插件读取yml文件转为json对应</p><ul><li><p>安装</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install js-yaml</span><br></pre></td></tr></table></figure></li><li><p>使用方式</p></li></ul><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> yaml = <span class="built_in">require</span>(<span class="string">&#x27;js-yaml&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> fs   = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="comment">// 读取项目本地的yml文件，如果是nacos的话，直接从获取到的就是fileYml</span></span><br><span class="line">  <span class="keyword">const</span> fileYml = fs.readFileSync(<span class="string">&#x27;web.yml&#x27;</span>, <span class="string">&#x27;utf8&#x27;</span>);</span><br><span class="line">  <span class="keyword">const</span> config = yaml.load(fileYml);</span><br><span class="line">  <span class="built_in">console</span>.log(config);</span><br><span class="line">&#125; <span class="keyword">catch</span> (e) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(e);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h3><h3 id="YML是什么"><a href="#YML是什么" class="headerlink" title="YML是什么"></a>YML是什么</h3><p>YAML (YAML Ain’t a Markup Language)YAML不是一种标记语言，通常以.yml为后缀的文件，是一种直观的能够被电脑识别的数据序列化格式，并且容易被人类阅读，容易和脚本语言交互的，可以被支持YAML库的不同的编程语言程序导入，一种专门用来写配置文件的语言。可用于如： Java，C/C++, Ruby, Python, Perl, C#, PHP等。</p><h3 id="YML的优点"><a href="#YML的优点" class="headerlink" title="YML的优点"></a>YML的优点</h3><ul><li>YAML易于人们阅读。</li><li>YAML数据在编程语言之间是可移植的。</li><li>YAML匹配敏捷语言的本机数据结构。</li><li>YAML具有一致的模型来支持通用工具。</li><li>YAML支持单程处理。</li><li>YAML具有表现力和可扩展性。</li><li>YAML易于实现和使用。</li></ul><h3 id="写法"><a href="#写法" class="headerlink" title="写法"></a>写法</h3><p>阮一峰老师，这里对jison文件已经介绍的很清楚了，这里就不在赘述了，查看使用请移步至<a href="http://www.ruanyifeng.com/blog/2016/07/yaml.html">YAML 语言教程<a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> 工具库 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hexo 相关</title>
+      <link href="/sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/Hexo-%E7%9B%B8%E5%85%B3/"/>
+      <url>/sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/Hexo-%E7%9B%B8%E5%85%B3/</url>
+      
+        <content type="html"><![CDATA[<h2 id="Hexo-生成的博客点击文章不会跳转界面，变成了直接下载"><a href="#Hexo-生成的博客点击文章不会跳转界面，变成了直接下载" class="headerlink" title="Hexo 生成的博客点击文章不会跳转界面，变成了直接下载"></a>Hexo 生成的博客点击文章不会跳转界面，变成了直接下载</h2><p>调查发现是因为修改了_config.xml（主文件夹下的设置文件，不是theme里面的）中的permalink参数，在修改中把最后一个斜杠给去掉了，重新加上之后可以点击下载了</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 文章的 永久链接 格式 </span></span><br><span class="line"><span class="attr">permalink</span>: :title/</span><br></pre></td></tr></table></figure><br/><hr><h2 id="Hexo的文档中添加图片"><a href="#Hexo的文档中添加图片" class="headerlink" title="Hexo的文档中添加图片"></a>Hexo的文档中添加图片</h2><p>hexo 文档中添加图片的话，需要安装一下 hexo-asset-image 插件</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install https:<span class="comment">//github.com/CodeFalling/hexo-asset-image --save</span></span><br></pre></td></tr></table></figure><p>使用下边这种方式即可引入，加载图片是以source为根路径的，如果图片放的位置是这样的：/source/image/a.png, 使用时引入方法：image/a.png 即可！</p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![图片默认文字](路径)</span><br></pre></td></tr></table></figure><h2 id="创建新的md文件"><a href="#创建新的md文件" class="headerlink" title="创建新的md文件"></a>创建新的md文件</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 在__posts下创建一个 &#x27;test1.md&#x27;</span></span><br><span class="line">hexo <span class="keyword">new</span> test1</span><br><span class="line"><span class="comment">// 在__posts/工具库文件夹下创建一个 &#x27;test2&#x27;</span></span><br><span class="line">hexo <span class="keyword">new</span> page --path 工具库/test2</span><br></pre></td></tr></table></figure><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure><ul><li>新建一篇文章。如果没有设置 layout 的话，默认使用 _config.yml 中的 default_layout 参数代替。如果标题包含空格的话，请使用引号括起来.</li></ul><h2 id="Hexo-遇到问题"><a href="#Hexo-遇到问题" class="headerlink" title="Hexo 遇到问题"></a>Hexo 遇到问题</h2><h3 id="hexo-g报错-—-line-mathALL-is-not-funciton问题解决"><a href="#hexo-g报错-—-line-mathALL-is-not-funciton问题解决" class="headerlink" title="hexo g报错  —   line.mathALL is not funciton问题解决"></a>hexo g报错  —   line.mathALL is not funciton问题解决</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 错误类似</span></span><br><span class="line">FATAL &#123; <span class="attr">err</span>:</span><br><span class="line"><span class="built_in">TypeError</span>: line.matchAll is not a <span class="function"><span class="keyword">function</span></span></span><br><span class="line"><span class="function"><span class="title">at</span> <span class="title">res</span>.<span class="title">value</span>.<span class="title">res</span>.<span class="title">value</span>.<span class="title">split</span>.<span class="title">map</span>.<span class="title">line</span> (<span class="params"><span class="regexp">/home/u</span>buntu<span class="regexp">/hexoblog/</span>node_modules<span class="regexp">/hexo-util/</span>lib/highlight.js:<span class="number">128</span>:<span class="number">26</span></span>)</span></span><br><span class="line"><span class="function"><span class="title">at</span> <span class="title">Array</span>.<span class="title">map</span> (<span class="params"></span>)</span></span><br><span class="line"><span class="function"><span class="title">at</span> <span class="title">closeTags</span> (<span class="params"><span class="regexp">/home/u</span>buntu<span class="regexp">/hexoblog/</span>node_modules<span class="regexp">/hexo-util/</span>lib/highlight.js:<span class="number">126</span>:<span class="number">37</span></span>)</span></span><br><span class="line"><span class="function"><span class="title">at</span> <span class="title">highlight</span> (<span class="params"><span class="regexp">/home/u</span>buntu<span class="regexp">/hexoblog/</span>node_modules<span class="regexp">/hexo-util/</span>lib/highlight.js:<span class="number">119</span>:<span class="number">10</span></span>)</span></span><br><span class="line"><span class="function"><span class="title">at</span> <span class="title">highlightUtil</span> (<span class="params"><span class="regexp">/home/u</span>buntu<span class="regexp">/hexoblog/</span>node_modules<span class="regexp">/hexo-util/</span>lib/highlight.js:<span class="number">23</span>:<span class="number">16</span></span>)</span></span><br><span class="line"><span class="function"><span class="title">at</span> <span class="title">data</span>.<span class="title">content</span>.<span class="title">dataContent</span>.<span class="title">replace</span> (<span class="params"><span class="regexp">/home/u</span>buntu<span class="regexp">/hexoblog/</span>node_modules<span class="regexp">/hexo/</span>lib<span class="regexp">/plugins/</span>filter<span class="regexp">/before_post_render/</span>backtick_code_block.js:<span class="number">92</span>:<span class="number">17</span></span>)</span></span><br><span class="line"><span class="function">...</span></span><br></pre></td></tr></table></figure><h3 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h3><p>  是node版本问题,针对于低版本node问题, node12.0.0以上就没有这个问题<br>  node版本12.0.0的Node.js中支持String.matchAll()</p><h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><ul><li>如果是本地启动报错，升级nodejs版本到12.0.0以上版本</li><li>如果使用了travis CI 打包是出现的，在.travis.yml中，将 node_js对应的参数改为12或12以上版本<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">node_js:</span><br><span class="line">  - <span class="number">12</span> # use nodejs v12 LTS</span><br></pre></td></tr></table></figure></li><li>config.xml中的 highlight-&gt;enable的值从true更改为false，也可以避免异常。</li></ul><p>两种解决方法</p><p>① 请将nodejs升级到高于12.0.0的版本。</p><p>② config.xml中的 highlight-&gt;enable的值从true更改为false，这样可以避免异常。</p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Hexo </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>readExcel</title>
+      <link href="/sunxiaoju.github.io/node/readExcel/"/>
+      <url>/sunxiaoju.github.io/node/readExcel/</url>
+      
+        <content type="html"><![CDATA[]]></content>
       
       
       
@@ -17,13 +93,19 @@
     
     
     <entry>
-      <title>About</title>
-      <link href="/sunxiaoju/sunxiaoju.github.io/node/test"/>
-      <url>/sunxiaoju/sunxiaoju.github.io/node/test</url>
+      <title>随笔记</title>
+      <link href="/sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/%E9%9A%8F%E7%AC%94%E8%AE%B0/"/>
+      <url>/sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/%E9%9A%8F%E7%AC%94%E8%AE%B0/</url>
       
-        <content type="html"><![CDATA[<p>TBD by youself.</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="复制链接在url中查看会多一个-–-E2-80-8B"><a href="#复制链接在url中查看会多一个-–-E2-80-8B" class="headerlink" title="复制链接在url中查看会多一个 – %E2%80%8B"></a>复制链接在url中查看会多一个 – %E2%80%8B</h2><h3 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h3><p>  测试的时候发现，测试那边发现界面访问界面的去，界面展示不出来接口数据信息，调查日志发现有一个日志报错，认真看这个字符串后边多了一串编码字符</p><h3 id="调查原因："><a href="#调查原因：" class="headerlink" title="调查原因："></a>调查原因：</h3><p>  对“1516004%E2%80%8B”字符串进行范编码格式之后，得到的字符串是“1526004​”，并没有多余的空格和字符存在，是不是很神奇？</p><p>  再继续调查发现 %E2%80%8E 代表的意思是：ZERO-WIDTH SPACE (ZWSP)  零宽度空串，？？？？ 虽然肉眼看不到，但又确实存在？</p><p>  这个字符串一般我们打印是打不出来的，但是通过word等其他文本编辑器拷贝的时候，可能会带有这个字符串，一般是存在url的最后边，怎么验证它是否存在呢？可以将其拷贝到url总就会在自动转化为 %E2%80%8E 这个编码字符，并且可以将鼠标光标放在“1526004​”字符串“前边，然后按删除需要删除两次才能删除到‘4’。</p><h3 id="解决方法：-将url中包含通过替换方式，将这个字符串替换掉即可解决此问题："><a href="#解决方法：-将url中包含通过替换方式，将这个字符串替换掉即可解决此问题：" class="headerlink" title="解决方法： 将url中包含通过替换方式，将这个字符串替换掉即可解决此问题："></a>解决方法： 将url中包含通过替换方式，将这个字符串替换掉即可解决此问题：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> url = windows.location.href.replace(<span class="regexp">/%E2%80%8B/g</span>, <span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> 日常问题 </tag>
+            
+        </tags>
       
     </entry>
     

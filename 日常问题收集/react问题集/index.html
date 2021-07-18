@@ -1,0 +1,233 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>react问题集 | Sky</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="react中路由跳转后页面不置顶问题问题: 从页面A跳转到页面B，页面A滚动到中间位置，跳转后页面B也会在中间位置解决方法：在顶部组件的生命周期中进行判断，例如：123456componentWillReceiveProps(nextProps)&amp;#123;​​​​​​　　&#x2F;&#x2F;当路由切换到新页面时置顶　　if(this.props.location !&#x3D;&#x3D; nextProps.location)&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react问题集">
+<meta property="og:url" content="https://sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/react%E9%97%AE%E9%A2%98%E9%9B%86/index.html">
+<meta property="og:site_name" content="Sky">
+<meta property="og:description" content="react中路由跳转后页面不置顶问题问题: 从页面A跳转到页面B，页面A滚动到中间位置，跳转后页面B也会在中间位置解决方法：在顶部组件的生命周期中进行判断，例如：123456componentWillReceiveProps(nextProps)&amp;#123;​​​​​​　　&#x2F;&#x2F;当路由切换到新页面时置顶　　if(this.props.location !&#x3D;&#x3D; nextProps.location)&amp;">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/react%E9%97%AE%E9%A2%98%E9%9B%86/image/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD.png">
+<meta property="article:published_time" content="2021-07-18T12:33:49.741Z">
+<meta property="article:modified_time" content="2021-07-18T12:33:49.741Z">
+<meta property="article:author" content="sunxiaoju">
+<meta property="article:tag" content="日常问题">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/react%E9%97%AE%E9%A2%98%E9%9B%86/image/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD.png">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+  
+  
+<link rel="stylesheet" href="/sunxiaoju.github.io/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/sunxiaoju.github.io/" id="logo">Sky</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/sunxiaoju.github.io/">首页</a>
+        
+          <a class="main-nav-link" href="/sunxiaoju.github.io/archives">分类</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://sunxiaoju.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-日常问题收集/react问题集" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/react%E9%97%AE%E9%A2%98%E9%9B%86/" class="article-date">
+  <time datetime="2021-07-18T12:33:49.741Z" itemprop="datePublished">2021-07-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      react问题集
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="react中路由跳转后页面不置顶问题"><a href="#react中路由跳转后页面不置顶问题" class="headerlink" title="react中路由跳转后页面不置顶问题"></a>react中路由跳转后页面不置顶问题</h2><h3 id="问题-从页面A跳转到页面B，页面A滚动到中间位置，跳转后页面B也会在中间位置"><a href="#问题-从页面A跳转到页面B，页面A滚动到中间位置，跳转后页面B也会在中间位置" class="headerlink" title="问题: 从页面A跳转到页面B，页面A滚动到中间位置，跳转后页面B也会在中间位置"></a>问题: 从页面A跳转到页面B，页面A滚动到中间位置，跳转后页面B也会在中间位置</h3><h3 id="解决方法：在顶部组件的生命周期中进行判断，例如："><a href="#解决方法：在顶部组件的生命周期中进行判断，例如：" class="headerlink" title="解决方法：在顶部组件的生命周期中进行判断，例如："></a>解决方法：在顶部组件的生命周期中进行判断，例如：</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">componentWillReceiveProps</span>(<span class="params">nextProps</span>)</span>&#123;​​​​​​</span><br><span class="line">　　<span class="comment">//当路由切换到新页面时置顶</span></span><br><span class="line">　　<span class="keyword">if</span>(<span class="built_in">this</span>.props.location !== nextProps.location)&#123;​​​​​​</span><br><span class="line">　　　　<span class="built_in">window</span>.scrollTo(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">　　&#125;​​​​​​</span><br><span class="line">&#125;​​​​​</span><br></pre></td></tr></table></figure>
+
+<br/>
+
+<hr>
+<h2 id="在async-await的方法函数中使用setState的问题"><a href="#在async-await的方法函数中使用setState的问题" class="headerlink" title="在async/await的方法函数中使用setState的问题"></a>在async/await的方法函数中使用setState的问题</h2><p>在正常的函数方法中调用时，使用的setState()是一个异步处理的过程，但是如果在async 的方法中使用setState()时，执行顺序是有变化的，稍不注意就会被带入坑中,</p>
+<p>在使用async的方法中，在await之前的setState方法调用都是异步来执行的，但是在await之后，使用的setState方法就变成了同步执行的了，一张图很容易说明问题：</p>
+<p><img src="image/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/%E5%BC%82%E6%AD%A5%E5%8A%A0%E8%BD%BD.png" alt="异步加载"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/react%E9%97%AE%E9%A2%98%E9%9B%86/" data-id="ckr96kn9g00052pu8ctxoerot" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/sunxiaoju.github.io/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" rel="tag">日常问题</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/sunxiaoju.github.io/%E5%B7%A5%E5%85%B7%E5%BA%93/node%E6%8E%A5%E5%85%A5nacos/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">node接入nacos</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/sunxiaoju.github.io/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/sunxiaoju.github.io/tags/%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">工具库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/sunxiaoju.github.io/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" rel="tag">日常问题</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/sunxiaoju.github.io/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/sunxiaoju.github.io/tags/%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 20px;">工具库</a> <a href="/sunxiaoju.github.io/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" style="font-size: 20px;">日常问题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/sunxiaoju.github.io/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/sunxiaoju.github.io/archives/2021/06/">June 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/react%E9%97%AE%E9%A2%98%E9%9B%86/">react问题集</a>
+          </li>
+        
+          <li>
+            <a href="/sunxiaoju.github.io/%E5%B7%A5%E5%85%B7%E5%BA%93/node%E6%8E%A5%E5%85%A5nacos/">node接入nacos</a>
+          </li>
+        
+          <li>
+            <a href="/sunxiaoju.github.io/%E5%B7%A5%E5%85%B7%E5%BA%93/yaml%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96/">ymal文件读取</a>
+          </li>
+        
+          <li>
+            <a href="/sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98%E6%94%B6%E9%9B%86/Hexo-%E7%9B%B8%E5%85%B3/">Hexo 相关</a>
+          </li>
+        
+          <li>
+            <a href="/sunxiaoju.github.io/node/readExcel/">readExcel</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 sunxiaoju<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/sunxiaoju.github.io/" class="mobile-nav-link">首页</a>
+  
+    <a href="/sunxiaoju.github.io/archives" class="mobile-nav-link">分类</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/sunxiaoju.github.io/fancybox/jquery.fancybox.css">
+
+  
+<script src="/sunxiaoju.github.io/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/sunxiaoju.github.io/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
