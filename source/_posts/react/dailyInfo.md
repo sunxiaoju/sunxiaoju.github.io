@@ -28,5 +28,5 @@ componentWillReceiveProps(nextProps){​​​​​​
 
 在使用async的方法中，在await之前的setState方法调用都是异步来执行的，但是在await之后，使用的setState方法就变成了同步执行的了，一张图很容易说明问题：
 
-![异步加载](image/日常问题/异步加载.png)
+![异步加载](dailyInfo/异步加载.png)
 

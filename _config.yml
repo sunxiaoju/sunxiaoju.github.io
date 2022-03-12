@@ -46,7 +46,7 @@ external_link:
   exclude: ''
 filename_case: 0
 render_drafts: false
-post_asset_folder: false
+post_asset_folder: true # false:  more open image don’t show, change true is ok!
 relative_link: false
 future: true
 highlight:

@@ -23,13 +23,21 @@ permalink: :title/
 ## Hexo的文档中添加图片
 
 hexo 文档中添加图片的话，需要安装一下 hexo-asset-image 插件
+将_config.yml文件中的配置文件改为true
+```js
+post_asset_folder: true
+```
 ```js
 npm install https://github.com/CodeFalling/hexo-asset-image --save
 ```
-使用下边这种方式即可引入，加载图片是以source为根路径的，如果图片放的位置是这样的：/source/image/a.png, 使用时引入方法：image/a.png 即可！
+以在_posts文件中使用，在与创建的md文件的同一个文件夹下，创建一个与md同名的文件夹，然后再引入的时候，可以直接使用
 ```js
-![图片默认文字](路径)
+![图片默认文字](文件夹/图片)
 ```
+例如：
+在myFAQ文件夹下创建一个myInfo.md文件,需要引入图片时,则：
+- 首先在myFAQ文件加载创建一个myInfo的文件夹，image.png放入文件夹中
+- 在myInfo.md中引入：``` ![image](myInfo/image.png)  ```
 
 ## Hexo使用小技巧
 
