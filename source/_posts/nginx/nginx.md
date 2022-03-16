@@ -7,16 +7,12 @@ tags: nginx学习
 
 
 ## nginx 入门
-
-### nginx 简介
-
-#### nginx概述 
-
 #### nginx 特点
-
 #### 正向代理
-在客户端或者浏览器，
+正向代理，意思是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。客户端才能使用正向代理。
 #### 反向代理
+反向代理（Reverse Proxy）方式是指以代理服务器来接受Internet上的连接请求，然后将请求转发给内部网络上的服务器；并将从服务器上得到的结果返回给Internet上请求连接的客户端，
+此时代理服务器对外就表现为一个服务器。
 #### 负载均衡
 单个服务器解决不了的问题，我们增加服务器数量，然后将请求分发到各个服务器上，将原先请求集中到单个服务器上的情况改为将请求分发到多个服务器上，将负载分发到不同的服务器，也就是我们所说的负载均衡
 #### 动静分离
@@ -187,3 +183,119 @@ firewall-cmd --reload
    proxy_pass  https://www.baidu.com
  }
  ```
+
+#### nginx 配置实例 --- 负载均衡
+nginx分配服务器策略
+- 轮询（默认）： 每个请求按照时间顺序逐一分配到不用的后端服务器，如果后端服务器domn掉，能自动剔除
+```js
+// 负载均衡名字
+stream myServer {
+  server 192.168.10.1:8080;
+  server 192.168.10.1:8081;
+}
+
+location / {
+  proxy_pass  https://myServer
+}
+```
+- weight ： 代表权重默认为1 ，权重越高被分配的客户端就越多,按比例分配
+```js
+// 负载均衡名字
+stream myServer {
+  server 192.168.10.1:8080 weight=5;
+  server 192.168.10.1:8081 weight=10;
+}
+
+location / {
+  proxy_pass  https://myServer
+}
+```
+
+- ip_hash：每个请求按照访问ip的hash结果分配，这样每个方可固定访问一个后端服务器（服务器设置session时，会用到）
+```js
+// 负载均衡名字
+stream myServer {
+  ip_hash
+  server 192.168.10.1:8080;
+  server 192.168.10.1:8081;
+}
+
+location / {
+  proxy_pass  https://myServer
+}
+```
+
+- fair(第三方)： 按照后端服务器的响应时间来分配请求，响应时间短的有限分配
+```js
+// 负载均衡名字
+stream myServer {
+  server 192.168.10.1:8080;
+  server 192.168.10.1:8081;
+  fair;
+}
+
+location / {
+  proxy_pass  https://myServer
+}
+```
+
+#### nginx 配置实例--- 动静分离
+nginx动静分离简单的来说就是把动态和静态请求分开，不能理解成制单成的吧动态界面和静态界面物理分离，严格意义上来说应该是动态请求和静态请求分离开，可以理解成nginx处理静态请求，tacmat来处理请求
+
+在服务创建data文件夹，在data中分别创建 www和image文件夹
+
+```js
+// 访问： http://***/www/index.html 可以直接访问到data下的www文件夹中
+location /www/ {
+  root /data/;
+  index index.html index.htm;
+}
+// 访问： http://***/image/01.jpg 可以直接访问到data下的image
+location /image/ {
+  root /data/;
+  // 列出当前文件夹中的目录内容
+  autoindex on;
+}
+```
+
+#### nginx 高可用
+
+- 服务器上安装keepalived
+```js
+// 安装
+yum install keepalived -y
+// 查看是否安装
+rpm -q -a keepalived
+```
+- 在etc中生成一个目录 keepalived, 有一个文件keepalived.conf
+
+##### 配置
+```js
+// 脚本文件 检测服务是否可用
+
+
+vrrp_instanve VI_1 {
+  state MASTER   # MATER 主服务器  BACKUP 备份服务器
+  interface ens22 # 网卡
+  virtual_router_id 51 # 主、备服务器必须相同
+  priority 100 # 主、备机取不同的优先级，主机值较大。，备份机较小
+  advert_int 1 
+  authentication {
+    auth_type PASS
+    auth_pass 1111
+  }
+  virtual_ipaddress {
+    192.168.17.50 # VRRP H虚拟主机
+  }
+}
+```
+
+### nginx 原理解析
+
+设置worker数量： 一个worker可以吧一个cpu发挥到极致，worker数跟cpu数量向东
+
+- 连接数 worker-connection
+  - 一个请求，占用多个worker几个连接数：  2个或者4个 静态资源：2  反向代理链接java：4
+  - nginx 有一个master，有四个worker，每个worker支持最大的连接数据1024，支持最大并发数是多少？
+    + 静态访问 worker_connection*worker_processes/2
+    + http 反向代理 worker_connection*worker_processes/4
