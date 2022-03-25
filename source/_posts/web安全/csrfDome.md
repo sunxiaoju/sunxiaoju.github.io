@@ -122,7 +122,40 @@ this._app.use(new CSRF({
   disableQuery: false
 }));
 ```
-- 在什么位置拦截给前端set的csrfToken
-- 提供接口和client接口请求header中set数据，略过参考 gg类似
-- 如果校验是否有效
-- 如果更新token信息
+- 开启一个新的接口， 在进入系统之前获取一下接口获取一下token
+
+```js
+/**
+ * 获取token，
+*/
+router.get('/getToken', async(ctx, next) => {
+  ctx.body = {
+    csrfToken: ctx.csrf
+  };
+})
+```
+- client 部分 跟eggjs以往csrf赛一个即可
+
+增加请求，将返回的token，存储到sessionStorge或者直接挂在window上即可
+
+在请求拦截中header中统一增加请求头： x-csrf-token
+```js
+axios.interceptors.request.use(
+  config => {
+    config.headers.Accept = 'application/json';
+    config.headers['x-csrf-token'] = window.csrfToken || '';
+
+    return config;
+  },
+  error => {
+    error && message.error(error.msg || error.code);
+    return Promise.reject(error);
+  },
+);
+```
+
+- 更新token
+```js
+// 在入口处将 将值设置为空
+ctx.session.secret = null
+```
