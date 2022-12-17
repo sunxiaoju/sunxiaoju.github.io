@@ -20,8 +20,8 @@ tags: 性能优化
 <iframe src="iframe" loading="lazy"></iframe>
 ```
 
-浏览器支持版本：
-![lazy](image/loading.png)
+浏览器支持版本
+ ![image](lazy-image/loading.png)
 
 #### 关键点： 必须要给img设置width和height属性
 - 懒加载的原理是利用图片的高度和时区的高度来进行计算的，如果图片没有设置高度，那么就是0，无论放多少图片， 都是为在可视区域的范围之内，会立马进行加载
@@ -120,6 +120,8 @@ let imgs = document.getElementsByTagName('img')
 
 代码示例三： intersectionObserve  -- 通过进入可视区域进行判断
 
+语法参考：
+https://developer.mozilla.org/zh-CN/docs/Web/API/IntersectionObserver/IntersectionObserver
 
 ```js
   // 获取到所有的图片
