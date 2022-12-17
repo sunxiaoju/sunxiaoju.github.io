@@ -1,0 +1,241 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>物理返回键控制 | Sky</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="使用pushState,点击浏览器后退按钮 chrome 不会触发popstate事件分析业务需求在移动端开发有，一些业务场景是禁止返回到上一个页面，所以需要实现次功能， 比如：支付完成界面，防止重复提交或支付 通常实现代码实现方式12345&#x2F;&#x2F; 防止页面后退 window.history.pushState(null, null, window.document.URL); window.add">
+<meta property="og:type" content="article">
+<meta property="og:title" content="物理返回键控制">
+<meta property="og:url" content="https://sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/%E6%8E%A7%E5%88%B6%E8%BF%94%E5%9B%9E%E9%94%AE/index.html">
+<meta property="og:site_name" content="Sky">
+<meta property="og:description" content="使用pushState,点击浏览器后退按钮 chrome 不会触发popstate事件分析业务需求在移动端开发有，一些业务场景是禁止返回到上一个页面，所以需要实现次功能， 比如：支付完成界面，防止重复提交或支付 通常实现代码实现方式12345&#x2F;&#x2F; 防止页面后退 window.history.pushState(null, null, window.document.URL); window.add">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-10-10T07:39:40.000Z">
+<meta property="article:modified_time" content="2022-12-17T08:23:44.996Z">
+<meta property="article:author" content="sunxiaoju">
+<meta property="article:tag" content="日常问题">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <!-- <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css"> -->
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Sky</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">分类</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://sunxiaoju.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post draft-日常问题/控制返回键" class="article article-type-post draft" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/%E6%8E%A7%E5%88%B6%E8%BF%94%E5%9B%9E%E9%94%AE/" class="article-date">
+  <time datetime="2022-10-10T07:39:40.000Z" itemprop="datePublished">2022-10-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      物理返回键控制
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="使用pushState-点击浏览器后退按钮-chrome-不会触发popstate事件分析"><a href="#使用pushState-点击浏览器后退按钮-chrome-不会触发popstate事件分析" class="headerlink" title="使用pushState,点击浏览器后退按钮 chrome 不会触发popstate事件分析"></a>使用pushState,点击浏览器后退按钮 chrome 不会触发popstate事件分析</h3><h3 id="业务需求"><a href="#业务需求" class="headerlink" title="业务需求"></a>业务需求</h3><p>在移动端开发有，一些业务场景是禁止返回到上一个页面，所以需要实现次功能， 比如：支付完成界面，防止重复提交或支付</p>
+<h3 id="通常实现代码实现方式"><a href="#通常实现代码实现方式" class="headerlink" title="通常实现代码实现方式"></a>通常实现代码实现方式</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 防止页面后退</span></span><br><span class="line"> <span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">pushState</span>(<span class="literal">null</span>, <span class="literal">null</span>, <span class="variable language_">window</span>.<span class="property">document</span>.<span class="property">URL</span>);</span><br><span class="line"> <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;popstate&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">pushState</span>(<span class="literal">null</span>, <span class="literal">null</span>, <span class="variable language_">window</span>.<span class="property">document</span>.<span class="property">URL</span>);</span><br><span class="line"> &#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="遇到问题"><a href="#遇到问题" class="headerlink" title="遇到问题"></a>遇到问题</h3><p>在实际操作中会发现，如果进入页面后没有任何人为交互操作行为的话，是不会触发 popstate 事件的，在chrome浏览器中只有手动在页面中进行交互操作（点击元素、滑动页面都算）后再点击浏览器的后退按钮才能触发popstate 事件。</p>
+<p>但是Safari浏览器缺没有这个问题。</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>没有交互操作时，通过js返回方法触发(history.go(-1)、history.back())，popstate 事件。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 防止页面后退</span></span><br><span class="line"> <span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">pushState</span>(<span class="literal">null</span>, <span class="literal">null</span>, <span class="variable language_">window</span>.<span class="property">document</span>.<span class="property">URL</span>);</span><br><span class="line"> <span class="variable language_">window</span>.<span class="title function_">addEventListener</span>(<span class="string">&#x27;popstate&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">   <span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">pushState</span>(<span class="literal">null</span>, <span class="literal">null</span>, <span class="variable language_">window</span>.<span class="property">document</span>.<span class="property">URL</span>);</span><br><span class="line"> &#125;);</span><br><span class="line"> <span class="variable language_">window</span>.<span class="property">history</span>.<span class="title function_">go</span>(-<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>查阅一些资料，发现这是 chrome浏览器 为了提高用户体验，为了防止流氓网站禁止用户执行回退操作，把用户困在当前网站，专门做的一个功能。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://sunxiaoju.github.io/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/%E6%8E%A7%E5%88%B6%E8%BF%94%E5%9B%9E%E9%94%AE/" data-id="clbroak0z000sbzs37etu1gfu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" rel="tag">日常问题</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/react/dailyInfo/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          react问题集
+        
+      </div>
+    </a>
+  
+  
+    <a href="/redis/redisLock/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">redis 分布式锁</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/" rel="tag">Hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/" rel="tag">git</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx%E5%AD%A6%E4%B9%A0/" rel="tag">nginx学习</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/web-%E5%AE%89%E5%85%A8/" rel="tag">web 安全</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%B7%A5%E5%85%B7%E5%BA%93/" rel="tag">工具库</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" rel="tag">性能优化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" rel="tag">日常问题</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/git/" style="font-size: 10px;">git</a> <a href="/tags/nginx%E5%AD%A6%E4%B9%A0/" style="font-size: 16.67px;">nginx学习</a> <a href="/tags/web-%E5%AE%89%E5%85%A8/" style="font-size: 13.33px;">web 安全</a> <a href="/tags/%E5%B7%A5%E5%85%B7%E5%BA%93/" style="font-size: 13.33px;">工具库</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 10px;">性能优化</a> <a href="/tags/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/" style="font-size: 20px;">日常问题</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/07/">July 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/06/">June 2021</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/lazy-image/">图片懒加载</a>
+          </li>
+        
+          <li>
+            <a href="/react/dailyInfo/">react问题集</a>
+          </li>
+        
+          <li>
+            <a href="/%E6%97%A5%E5%B8%B8%E9%97%AE%E9%A2%98/%E6%8E%A7%E5%88%B6%E8%BF%94%E5%9B%9E%E9%94%AE/">物理返回键控制</a>
+          </li>
+        
+          <li>
+            <a href="/redis/redisLock/">redis 分布式锁</a>
+          </li>
+        
+          <li>
+            <a href="/git%E5%91%BD%E4%BB%A4/git/">git 常用操作命令</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 sunxiaoju<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">分类</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
